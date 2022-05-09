@@ -24,3 +24,12 @@
     text-decoration: none;
     margin: 20px auto;
   }
+
+  .ingredients {
+    display: flex;
+    align-items: cneter;
+  }
+
+  .ingredients button {
+    margin: 0 0 0 10px;
+  }
