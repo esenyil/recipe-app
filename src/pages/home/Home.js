@@ -16,13 +16,16 @@ function Home() {
     useEffect(() => {
         setIsPending(true)
 
+        //fetching data
         projectFirestore.collection('Recipes').get().then((snapshot) => {
             console.log(snapshot)
+            //output error if no recipe
             if (snapshot.empty) {
                 setError('No recipes to load')
                 setIsPending(false)
             } else {
                 let results = []
+                // output data
                 snapshot.docs.forEach(doc => {
                     results.push({ id: doc.id, ...doc.data()})
                 })
