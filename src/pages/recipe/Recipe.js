@@ -17,7 +17,7 @@ function Recipe() {
   useEffect(() => {
     setIsPending(true)
     //fetching data
-    projectFirestore.collection('Recipes').doc(id).get().then((doc) => {
+    const unsub = projectFirestore.collection('Recipes').doc(id).onSnapshot((doc) => {
       //output data
       if (doc.exists) {
         setIsPending(false)
@@ -28,7 +28,17 @@ function Recipe() {
         setError('Could not find that recipe')
       }
     })
+
+    // cleanup function
+    return () => unsub()
+
   }, [id])
+
+  const handleClick = () => {
+    projectFirestore.collection('Recipes').doc(id).update({
+      title: 'Something different'
+    })
+  }
 
   return (
     <div className={`recipe ${mode}`}>
@@ -44,6 +54,7 @@ function Recipe() {
             ))}
           </ul>
           <p className="method">{data.method}</p>
+          <button onClick={handleClick}>update me</button>
         </>
       )}
     </div>
