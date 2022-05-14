@@ -16,6 +16,8 @@ function Modal({ open, children, onClose }) {
 
   const { id } = useParams()
 
+  // we need the default text to be de previous data
+  
   const handleSubmit = async (e) => {
     e.preventDefault()
     console.log(title, method, ingredients, cookingTime)
@@ -38,6 +40,7 @@ function Modal({ open, children, onClose }) {
           cookingTime: cookingTime + " minutes",
         })
         onClose()
+        //we need to reset form
     } catch (err) {
       console.log(err)
     }

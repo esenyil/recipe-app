@@ -39,13 +39,6 @@ function Recipe() {
 
   }, [id])
 
-  const handleClick = () => {
-    // projectFirestore.collection('Recipes').doc(id).update({
-    //   title: 'Something different'
-    // })
-
-  }
-
   return (
     <div className={`recipe ${mode}`}>
       {error && <p className="error">{error}</p>}
