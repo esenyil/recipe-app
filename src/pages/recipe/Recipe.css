@@ -27,6 +27,14 @@
   text-align: left;
   line-height: 1.5em;
 }
+.update {
+  height: 30px;
+  position: absolute;
+  top: 190px;
+  right: 310px;
+  cursor: pointer;
+  filter: invert(60%);
+}
 
 /* dark mode */
 .recipe.dark {

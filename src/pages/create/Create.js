@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { projectFirestore } from "../../firebase/config";
 
@@ -32,12 +32,14 @@ function Create() {
   }
 
   const handleAdd = (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    // removes whitespace
     const ing = newIngredient.trim()
-
+    //checking for no duplicate values. No repeat
     if (ing && !ingredients.includes(ing)) {
       setIngredients((prevIngredients) => [...prevIngredients, ing])
     }
+    // Resets state and focuses on input field
     setNewIngredient("")
     ingredientinput.current.focus();
   }

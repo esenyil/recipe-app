@@ -1,7 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useTheme } from '../../hooks/useTheme'
-import { projectFirestore } from '../../firebase/config'
+import { useTheme } from '../../hooks/useTheme';
+import { projectFirestore } from '../../firebase/config';
+import updateIcon from '../../assets/update.svg';
+
+//components
+import Modal from '../../components/Modal';
 
 //styles
 import "./Recipe.css";
@@ -13,6 +17,7 @@ function Recipe() {
   const [data, setData] = useState(null)
   const [isPending, setIsPending] = useState(false)
   const [error, setError] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     setIsPending(true)
@@ -35,9 +40,10 @@ function Recipe() {
   }, [id])
 
   const handleClick = () => {
-    projectFirestore.collection('Recipes').doc(id).update({
-      title: 'Something different'
-    })
+    // projectFirestore.collection('Recipes').doc(id).update({
+    //   title: 'Something different'
+    // })
+
   }
 
   return (
@@ -54,9 +60,10 @@ function Recipe() {
             ))}
           </ul>
           <p className="method">{data.method}</p>
-          <button onClick={handleClick}>update me</button>
+          <img src={updateIcon} className="update" onClick={() => setIsOpen(true)} />
         </>
       )}
+      <Modal open={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 }
