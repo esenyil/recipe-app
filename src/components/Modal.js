@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef } from "react"
 import closeIcon from "../assets/close.svg"
 import { projectFirestore } from "../firebase/config"
 import { useParams } from "react-router-dom"
@@ -17,7 +17,7 @@ function Modal({ open, children, onClose }) {
   const { id } = useParams()
 
   // we need the default text to be de previous data
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     console.log(title, method, ingredients, cookingTime)
