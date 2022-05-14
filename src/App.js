@@ -5,7 +5,6 @@ import { useTheme } from './hooks/useTheme';
 import Navbar from './components/Navbar';
 import Create from './pages/create/Create';
 import Home from './pages/home/Home';
-import Search from './pages/search/Search';
 import Recipe from './pages/recipe/Recipe';
 import ThemeSelector from './components/ThemeSelector';
 
@@ -26,9 +25,6 @@ function App() {
           </Route>
           <Route exact path="/create">
             <Create />
-          </Route>
-          <Route exact path="/search">
-            <Search />
           </Route>
           <Route exact path="/recipes/:id">
             <Recipe />
