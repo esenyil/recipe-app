@@ -4,9 +4,6 @@ import { useTheme } from '../hooks/useTheme'
 // styles
 import "./Navbar.css";
 
-//components
-import Searchbar from "./Searchbar";
-
 function Navbar() {
   const { color } = useTheme()
 
@@ -16,7 +13,6 @@ function Navbar() {
         <Link to="/" className="brand">
         <h1>Recipe App</h1>
         </Link>
-        <Searchbar />
         <Link to="/create">Create recipe</Link>
       </nav>
     </div>
