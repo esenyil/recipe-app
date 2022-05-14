@@ -14,6 +14,7 @@ function Create() {
   const ingredientinput = useRef(null);
   const history = useHistory();
 
+  // asynchronous submit function 
   const handleSubmit = async (e) => {
     e.preventDefault()
     const doc = {

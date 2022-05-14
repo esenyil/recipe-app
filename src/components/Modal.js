@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom"
 //styles
 import "./Modal.css"
 
-function Modal({ open, children, onClose }) {
+function Modal({ open, children, onClose, data }) {
   const [title, setTitle] = useState("")
   const [method, setMethod] = useState("")
   const [cookingTime, setCookingTime] = useState("")
@@ -16,11 +16,12 @@ function Modal({ open, children, onClose }) {
 
   const { id } = useParams()
 
-  // we need the default text to be de previous data
+  // we need the default text to be the previous data
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(title, method, ingredients, cookingTime)
+    
+    // explaning this
     try {
       const updatedRecipe = projectFirestore.collection("Recipes").doc(id)
       updatedRecipe.set({
@@ -39,8 +40,8 @@ function Modal({ open, children, onClose }) {
           method: method,
           cookingTime: cookingTime + " minutes",
         })
-        onClose()
-        //we need to reset form
+      onClose()
+      //we need to reset form
     } catch (err) {
       console.log(err)
     }
@@ -60,13 +61,19 @@ function Modal({ open, children, onClose }) {
     ingredientinput.current.focus()
   }
 
+  // if open (prop state) is false then return null, so basically hiding modal
   if (!open) return null
 
   return (
     <>
       <div className="overlay" />
       <div className="modal">
-        <img src={closeIcon} className="close" onClick={onClose} />
+        <img
+          src={closeIcon}
+          className="close"
+          onClick={onClose}
+          alt="icon for closing modal"
+        />
         <h2 className="modal-title">Update recipe</h2>
 
         <form onSubmit={handleSubmit}>
@@ -75,7 +82,7 @@ function Modal({ open, children, onClose }) {
             <input
               type="text"
               onChange={(e) => setTitle(e.target.value)}
-              value={title}
+              value={data.title}
               required
             />
           </label>
@@ -105,7 +112,7 @@ function Modal({ open, children, onClose }) {
             <span>Recipe method:</span>
             <textarea
               onChange={(e) => setMethod(e.target.value)}
-              value={method}
+              value={data.method}
               required
             />
           </label>
@@ -115,7 +122,7 @@ function Modal({ open, children, onClose }) {
             <input
               type="number"
               onChange={(e) => setCookingTime(e.target.value)}
-              value={cookingTime}
+              value={data.cookingTime}
               required
             />
           </label>
