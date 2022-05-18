@@ -1,5 +1,8 @@
+// importing hooks
 import { useState, useRef } from "react";
-import { useHistory } from "react-router-dom";
+
+//importing useNavigate (before useHistory) from react-router-dom v6
+import { useNavigate } from "react-router-dom";
 import { projectFirestore } from "../../firebase/config";
 
 //styles
@@ -12,7 +15,7 @@ function Create() {
   const [newIngredient, setNewIngredient] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const ingredientinput = useRef(null);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   // asynchronous submit function 
   const handleSubmit = async (e) => {
@@ -26,7 +29,7 @@ function Create() {
 
     try {
       await projectFirestore.collection("Recipes").add(doc);
-      history.push('/')
+      navigate('/') //before useHistory.push('/')
     } catch(err) {
       console.log(err)
     }

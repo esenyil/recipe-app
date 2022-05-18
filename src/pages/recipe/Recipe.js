@@ -1,3 +1,4 @@
+//importing useParams for specifying which recipe (id) we want to display
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { projectFirestore } from "../../firebase/config"

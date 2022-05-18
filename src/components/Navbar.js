@@ -1,3 +1,4 @@
+// importing Link from react-router-dom and it lets the user navigate to another page by clicking
 import { Link } from "react-router-dom"
 import foodIcon from "../assets/food.svg"
 

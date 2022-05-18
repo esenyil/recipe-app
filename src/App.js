@@ -1,4 +1,5 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+//importing browserRouter, Routes (before Switch) and Route from react-router-dom v6
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // page components
 import Navbar from './components/Navbar';
@@ -15,17 +16,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/create">
-            <Create />
-          </Route>
-          <Route exact path="/recipes/:id">
-            <Recipe />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/create" element={<Create />} />
+          <Route exact path="/recipes/:id" element={<Recipe />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );
