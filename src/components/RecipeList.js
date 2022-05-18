@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useTheme } from "../hooks/useTheme";
 import trashcan from '../assets/trashcan.svg';
 import { projectFirestore } from '../firebase/config';
 
@@ -7,7 +6,6 @@ import { projectFirestore } from '../firebase/config';
 import "./RecipeList.css";
 
 function RecipeList({ recipes }) {
-  const { mode } = useTheme()
 
   // checking if there is any recipes, if not then error message
   if (recipes.length === 0) {
@@ -23,7 +21,7 @@ function RecipeList({ recipes }) {
     <div className="recipe-list">
       {/* Creating components from arrays ?? */}
       {recipes.map((recipe) => (
-        <div key={recipe.id} className={`card ${mode}`}>
+        <div key={recipe.id} className="card">
           <h3>{recipe.title}</h3>
           <p>{recipe.cookingTime} to make.</p>
           <div>{recipe.method.substring(0, 100)}...</div>

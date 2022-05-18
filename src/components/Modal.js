@@ -20,7 +20,7 @@ function Modal({ open, children, onClose, data }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     // explaning this
     try {
       const updatedRecipe = projectFirestore.collection("Recipes").doc(id)
@@ -64,17 +64,20 @@ function Modal({ open, children, onClose, data }) {
   // if open (prop state) is false then return null, so basically hiding modal
   if (!open) return null
 
+  //hjælp med value={data.title}
   return (
     <>
       <div className="overlay" />
       <div className="modal">
-        <img
-          src={closeIcon}
-          className="close"
-          onClick={onClose}
-          alt="icon for closing modal"
-        />
-        <h2 className="modal-title">Update recipe</h2>
+        <div className="modal-header">
+          <img
+            src={closeIcon}
+            className="close"
+            onClick={onClose}
+            alt="icon for closing modal"
+          />
+          <h2 className="modal-title">Update recipe</h2>
+        </div>
 
         <form onSubmit={handleSubmit}>
           <label>
@@ -122,7 +125,7 @@ function Modal({ open, children, onClose, data }) {
             <input
               type="number"
               onChange={(e) => setCookingTime(e.target.value)}
-              value={data.cookingTime}
+              value={parseInt(data.cookingTime)}
               required
             />
           </label>

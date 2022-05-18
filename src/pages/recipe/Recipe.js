@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { useTheme } from "../../hooks/useTheme"
 import { projectFirestore } from "../../firebase/config"
 import updateIcon from "../../assets/update.svg"
 
@@ -12,7 +11,6 @@ import "./Recipe.css"
 
 function Recipe() {
   const { id } = useParams()
-  const { mode } = useTheme()
 
   const [data, setData] = useState(null)
   const [isPending, setIsPending] = useState(false)
@@ -43,7 +41,7 @@ function Recipe() {
   }, [id])
 
   return (
-    <div className={`recipe ${mode}`}>
+    <div className="recipe">
       {/* conditional rendering using logical and */}
       {error && <p className="error">{error}</p>}
       {isPending && <p className="loading">Loading...</p>}
