@@ -1,9 +1,9 @@
 .create {
   background-color: #fff;
   color: #333;
-  padding: 50px;
+  padding: 10px 50px;
   max-width: 480px;
-  margin: 60px auto;
+  margin: 40px auto;
   border-radius: 4px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
 }

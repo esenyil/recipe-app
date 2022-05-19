@@ -11,7 +11,7 @@ function Modal({ open, children, onClose, data }) {
   const [method, setMethod] = useState(data.method)
   const [cookingTime, setCookingTime] = useState(data.cookingTime)
   const [newIngredient, setNewIngredient] = useState("")
-  const [ingredients, setIngredients] = useState([])
+  const [ingredients, setIngredients] = useState(data.ingredients.join(", "))
   const ingredientinput = useRef(null)
 
   const { id } = useParams()
@@ -26,7 +26,7 @@ function Modal({ open, children, onClose, data }) {
       const updatedRecipe = db.collection("Recipes").doc(id)
       updatedRecipe.set({
         title: title,
-        ingredients: ingredients,
+        ingredients: ingredients.split(","),
         method: method,
         cookingTime: cookingTime + " minutes",
       })
@@ -36,9 +36,9 @@ function Modal({ open, children, onClose, data }) {
         .doc(id)
         .update({
           title: title,
-          ingredients: ingredients,
+          ingredients: ingredients.split(","),
           method: method,
-          cookingTime: cookingTime + " minutes",
+          cookingTime: cookingTime,
         })
       onClose()
       //we need to reset form
@@ -93,23 +93,14 @@ function Modal({ open, children, onClose, data }) {
           <label>
             <span>Recipe ingredients:</span>
             <div className="ingredients">
-              <input
-                type="text"
-                onChange={(e) => setNewIngredient(e.target.value)}
-                value={newIngredient}
-                ref={ingredientinput}
-              />
-              <button onClick={handleAdd} className="btn">
-                add
-              </button>
+              <textarea
+                value={ingredients}
+                onChange={(e) => setIngredients(e.target.value)}
+                cols="30"
+                rows="5"
+              ></textarea>
             </div>
           </label>
-          <p>
-            Current ingredients:{" "}
-            {ingredients.map((i) => (
-              <em key={i}>{i}, </em>
-            ))}
-          </p>
 
           <label>
             <span>Recipe method:</span>

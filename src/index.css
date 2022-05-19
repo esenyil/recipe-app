@@ -8,10 +8,21 @@ body {
   font-family: lato, sans-serif;
   margin: 0;
   font-size: 1.4em;
+  background-color: #dfdfdf;
+  color: #333;
+}
+body::before {
+  content:"";
   background-image: url("https://img.freepik.com/free-photo/healthy-diet-background-with-thyme-leaf-border_53876-106117.jpg?w=2000&t=st=1652955644~exp=1652956244~hmac=02aea698f193109c4e756ab22adbd9c3fbb60529934a1d0a11bde7c43dbca249");
   background-size: cover;
   height: 100vh;
-  color: #333;
+  opacity: 0.4;
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  z-index:-3;
 }
 h1,h2,h3,p {
   margin: 0;
