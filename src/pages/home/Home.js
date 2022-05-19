@@ -1,4 +1,4 @@
-import { projectFirestore } from '../../firebase/config'
+import { db } from '../../firebase/config'
 import { useEffect, useState } from 'react';
 
 // styles
@@ -18,7 +18,7 @@ function Home() {
         setIsPending(true)
 
         //fetching data
-        const unsub = projectFirestore.collection('Recipes').onSnapshot((snapshot) => {
+        const unsub = db.collection('Recipes').onSnapshot((snapshot) => {
             console.log(snapshot)
             //outputting error if no recipe
             if (snapshot.empty) {

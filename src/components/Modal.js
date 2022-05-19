@@ -1,6 +1,6 @@
 import { useState, useRef } from "react"
 import closeIcon from "../assets/close.svg"
-import { projectFirestore } from "../firebase/config"
+import { db } from "../firebase/config"
 import { useParams } from "react-router-dom"
 
 //styles
@@ -23,7 +23,7 @@ function Modal({ open, children, onClose, data }) {
 
     // explaning this
     try {
-      const updatedRecipe = projectFirestore.collection("Recipes").doc(id)
+      const updatedRecipe = db.collection("Recipes").doc(id)
       updatedRecipe.set({
         title: title,
         ingredients: ingredients,
@@ -31,7 +31,7 @@ function Modal({ open, children, onClose, data }) {
         cookingTime: cookingTime + " minutes",
       })
 
-      await projectFirestore
+      await db
         .collection("Recipes")
         .doc(id)
         .update({

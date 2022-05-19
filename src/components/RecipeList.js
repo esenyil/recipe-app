@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import trashcan from '../assets/trashcan.svg';
-import { projectFirestore } from '../firebase/config';
+import { db } from '../firebase/config';
 
 // styles
 import "./RecipeList.css";
@@ -14,7 +14,7 @@ function RecipeList({ recipes }) {
 
   // taking id as a parameter to delete a recipe, and then passing the recipe id in as argument when clicked
   const handleClick = (id) => {
-    projectFirestore.collection('Recipes').doc(id).delete()
+    db.collection('Recipes').doc(id).delete()
   }
   
   return (

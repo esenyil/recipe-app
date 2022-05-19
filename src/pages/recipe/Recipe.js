@@ -1,7 +1,7 @@
 //importing useParams for specifying which recipe (id) we want to display
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { projectFirestore } from "../../firebase/config"
+import { db } from "../../firebase/config"
 import updateIcon from "../../assets/update.svg"
 
 //components
@@ -22,7 +22,7 @@ function Recipe() {
   useEffect(() => {
     setIsPending(true)
     //fetching data
-    const unsub = projectFirestore
+    const unsub = db
       .collection("Recipes")
       .doc(id)
       .onSnapshot((doc) => {

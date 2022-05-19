@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 
 //importing useNavigate (before useHistory) from react-router-dom v6
 import { useNavigate } from "react-router-dom";
-import { projectFirestore } from "../../firebase/config";
+import { db } from "../../firebase/config";
 
 //styles
 import "./Create.css";
@@ -28,7 +28,7 @@ function Create() {
     }
 
     try {
-      await projectFirestore.collection("Recipes").add(doc);
+      await db.collection("Recipes").add(doc);
       navigate('/') //before useHistory.push('/')
     } catch(err) {
       console.log(err)
