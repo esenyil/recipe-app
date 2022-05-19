@@ -63,9 +63,9 @@ function Recipe() {
             onClick={() => setIsOpen(true)}
             alt="icon for updating recipe"
           />
+          <Modal open={isOpen} data={data} onClose={() => setIsOpen(false)} />
         </>
       )}
-      <Modal open={isOpen} data={data} onClose={() => setIsOpen(false)} />
     </div>
   )
 }

@@ -7,9 +7,9 @@ import { useParams } from "react-router-dom"
 import "./Modal.css"
 
 function Modal({ open, children, onClose, data }) {
-  const [title, setTitle] = useState("")
-  const [method, setMethod] = useState("")
-  const [cookingTime, setCookingTime] = useState("")
+  const [title, setTitle] = useState(data.title)
+  const [method, setMethod] = useState(data.method)
+  const [cookingTime, setCookingTime] = useState(data.cookingTime)
   const [newIngredient, setNewIngredient] = useState("")
   const [ingredients, setIngredients] = useState([])
   const ingredientinput = useRef(null)
@@ -85,7 +85,7 @@ function Modal({ open, children, onClose, data }) {
             <input
               type="text"
               onChange={(e) => setTitle(e.target.value)}
-              value={data.title}
+              value={title}
               required
             />
           </label>
@@ -115,7 +115,7 @@ function Modal({ open, children, onClose, data }) {
             <span>Recipe method:</span>
             <textarea
               onChange={(e) => setMethod(e.target.value)}
-              value={data.method}
+              value={method}
               required
             />
           </label>
@@ -125,7 +125,7 @@ function Modal({ open, children, onClose, data }) {
             <input
               type="number"
               onChange={(e) => setCookingTime(e.target.value)}
-              value={parseInt(data.cookingTime)}
+              value={parseInt(cookingTime)}
               required
             />
           </label>
