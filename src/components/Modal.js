@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState } from "react"
 import closeIcon from "../assets/close.svg"
 import { db } from "../firebase/config"
 import { useParams } from "react-router-dom"
@@ -6,17 +6,13 @@ import { useParams } from "react-router-dom"
 //styles
 import "./Modal.css"
 
-function Modal({ open, children, onClose, data }) {
+function Modal({ open, onClose, data }) {
   const [title, setTitle] = useState(data.title)
   const [method, setMethod] = useState(data.method)
   const [cookingTime, setCookingTime] = useState(data.cookingTime)
-  const [newIngredient, setNewIngredient] = useState("")
   const [ingredients, setIngredients] = useState(data.ingredients.join(", "))
-  const ingredientinput = useRef(null)
 
   const { id } = useParams()
-
-  // we need the default text to be the previous data
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -24,6 +20,8 @@ function Modal({ open, children, onClose, data }) {
     // explaning this
     try {
       const updatedRecipe = db.collection("Recipes").doc(id)
+
+      // set() - to create/get a single document
       updatedRecipe.set({
         title: title,
         ingredients: ingredients.split(","),
@@ -41,30 +39,14 @@ function Modal({ open, children, onClose, data }) {
           cookingTime: cookingTime,
         })
       onClose()
-      //we need to reset form
     } catch (err) {
       console.log(err)
     }
   }
 
-  const handleAdd = (e) => {
-    e.preventDefault()
-    // removes whitespace
-    const ing = newIngredient.trim()
-
-    //checking for no duplicate values. No repeat
-    if (ing && !ingredients.includes(ing)) {
-      setIngredients((prevIngredients) => [...prevIngredients, ing])
-    }
-    // Resets state and focuses on input field
-    setNewIngredient("")
-    ingredientinput.current.focus()
-  }
-
   // if open (prop state) is false then return null, so basically hiding modal
   if (!open) return null
 
-  //hjælp med value={data.title}
   return (
     <>
       <div className="overlay" />
@@ -98,7 +80,7 @@ function Modal({ open, children, onClose, data }) {
                 onChange={(e) => setIngredients(e.target.value)}
                 cols="30"
                 rows="5"
-              ></textarea>
+              />
             </div>
           </label>
 
@@ -124,8 +106,7 @@ function Modal({ open, children, onClose, data }) {
           <button className="btn">update</button>
         </form>
       </div>
-      {children}
     </>
   )
 }
-export default Modal
+export default Modal;

@@ -43,6 +43,9 @@ function Recipe() {
 
   return (
     <div className="recipe">
+      {/* Inline If-Else with Conditional Operator */}
+      {/* {error ? <p className="error">{error}</p> : ""} */}
+
       {/* conditional rendering using logical and */}
       {error && <p className="error">{error}</p>}
       {isPending && <p className="loading">Loading...</p>}

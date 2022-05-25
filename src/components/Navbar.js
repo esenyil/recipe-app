@@ -13,6 +13,7 @@ function Navbar() {
           <img src={foodIcon} alt="logo" />
           <h1>Recipe App</h1>
         </Link>
+        
         <Link to="/create">Create recipe</Link>
       </nav>
     </div>
