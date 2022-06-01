@@ -17,12 +17,9 @@ function Modal({ open, onClose, data }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // explaning this
     try {
-      const updatedRecipe = db.collection("Recipes").doc(id)
-
       // set() - to create/get a single document
-      updatedRecipe.set({
+      db.collection("Recipes").doc(id).set({
         title: title,
         ingredients: ingredients.split(","),
         method: method,
@@ -80,6 +77,7 @@ function Modal({ open, onClose, data }) {
                 onChange={(e) => setIngredients(e.target.value)}
                 cols="30"
                 rows="5"
+                required
               />
             </div>
           </label>

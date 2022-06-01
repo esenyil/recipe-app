@@ -28,6 +28,7 @@ function Home() {
                 let results = []
                 // outputting data
                 snapshot.docs.forEach(doc => {
+                    //object representing a single recipe
                     results.push({ id: doc.id, ...doc.data()})
                 })
                 setData(results)

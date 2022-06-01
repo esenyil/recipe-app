@@ -1,24 +1,25 @@
 // importing hooks
-import { useState, useRef } from "react";
+import { useState, useRef } from "react"
 
 //importing useNavigate (before useHistory) from react-router-dom v6
-import { useNavigate } from "react-router-dom";
-import { db } from "../../firebase/config";
+import { useNavigate } from "react-router-dom"
+import { db } from "../../firebase/config"
 
 //styles
-import "./Create.css";
+import "./Create.css"
 
 function Create() {
-  const [title, setTitle] = useState("");
-  const [method, setMethod] = useState("");
-  const [cookingTime, setCookingTime] = useState("");
-  const [newIngredient, setNewIngredient] = useState("");
-  const [ingredients, setIngredients] = useState([]);
+  const [title, setTitle] = useState("")
+  const [method, setMethod] = useState("")
+  const [cookingTime, setCookingTime] = useState("")
+  const [newIngredient, setNewIngredient] = useState("")
+  const [ingredients, setIngredients] = useState([])
 
-  const ingredientinput = useRef(null);
-  const navigate = useNavigate();
+  // return object {current: null}
+  const ingredientinput = useRef(null)
+  const navigate = useNavigate()
 
-  // asynchronous submit function 
+  // asynchronous submit function
   const handleSubmit = async (e) => {
     e.preventDefault()
     const doc = {
@@ -29,9 +30,9 @@ function Create() {
     }
 
     try {
-      await db.collection("Recipes").add(doc);
-      navigate('/') //before useHistory.push('/')
-    } catch(err) {
+      await db.collection("Recipes").add(doc)
+      navigate("/") //before useHistory.push('/')
+    } catch (err) {
       console.log(err)
     }
   }
@@ -49,7 +50,7 @@ function Create() {
 
     // Resets state and focuses on input field
     setNewIngredient("")
-    ingredientinput.current.focus();
+    ingredientinput.current.focus()
   }
 
   return (
@@ -74,7 +75,7 @@ function Create() {
               type="text"
               onChange={(e) => setNewIngredient(e.target.value)}
               value={newIngredient}
-              ref={ingredientinput} //focus input fields - useRef
+              ref={ingredientinput} //focus input fields - useRef {current: input}
             />
             <button onClick={handleAdd} className="btn">
               add
@@ -110,6 +111,6 @@ function Create() {
         <button className="btn">submit</button>
       </form>
     </div>
-  );
+  )
 }
-export default Create;
+export default Create
