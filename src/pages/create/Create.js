@@ -14,6 +14,7 @@ function Create() {
   const [cookingTime, setCookingTime] = useState("");
   const [newIngredient, setNewIngredient] = useState("");
   const [ingredients, setIngredients] = useState([]);
+
   const ingredientinput = useRef(null);
   const navigate = useNavigate();
 
@@ -37,12 +38,15 @@ function Create() {
 
   const handleAdd = (e) => {
     e.preventDefault()
+
     // removes whitespace
     const ing = newIngredient.trim()
+
     //checking for no duplicate values. No repeat
     if (ing && !ingredients.includes(ing)) {
       setIngredients((prevIngredients) => [...prevIngredients, ing])
     }
+
     // Resets state and focuses on input field
     setNewIngredient("")
     ingredientinput.current.focus();
@@ -70,7 +74,7 @@ function Create() {
               type="text"
               onChange={(e) => setNewIngredient(e.target.value)}
               value={newIngredient}
-              ref={ingredientinput}
+              ref={ingredientinput} //focus input fields - useRef
             />
             <button onClick={handleAdd} className="btn">
               add
@@ -79,8 +83,8 @@ function Create() {
         </label>
         <p>
           Current ingredients:{" "}
-          {ingredients.map((i) => (
-            <em key={i}>{i}, </em>
+          {ingredients.map((item) => (
+            <em key={item}>{item}, </em>
           ))}
         </p>
 

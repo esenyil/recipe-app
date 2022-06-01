@@ -11,7 +11,7 @@ import Modal from "../../components/Modal"
 import "./Recipe.css"
 
 function Recipe() {
-  const { id } = useParams()
+  const { id } = useParams() //gets id from url
 
   const [data, setData] = useState(null)
   const [isPending, setIsPending] = useState(false)

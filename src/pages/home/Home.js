@@ -20,7 +20,7 @@ function Home() {
         //fetching data
         const unsub = db.collection('Recipes').onSnapshot((snapshot) => {
             console.log(snapshot)
-            //outputting error if no recipe
+            //outputting error if no recipe - empty firebase property
             if (snapshot.empty) {
                 setError('No recipes to load')
                 setIsPending(false)
@@ -38,7 +38,7 @@ function Home() {
             setIsPending(false)
         })
 
-        // cleanup funtion invoked
+        // cleanup funtion invoked - stop listening when unmounting
         return () => unsub()
 
     }, [])
